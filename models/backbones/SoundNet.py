@@ -51,7 +51,7 @@ class AADownsample(nn.Module):
                      self.filt,
                      stride=self.stride,
                      padding=self.filt_size // 2,
-                     groups=x.shape[1])
+                     groups=self.channels)
         return y
 
 

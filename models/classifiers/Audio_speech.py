@@ -13,6 +13,15 @@ class Audio_classify(BaseClassifier):
         self.pretrained = pretrained
         self.sm = torch.nn.Softmax(1)
 
+    def forward(self, img, flag=False, return_loss=True, **kwargs):
+        if flag:
+            return self.forward_dummy(img)
+        else:
+            if return_loss:
+                return self.forward_train(img, **kwargs)
+            else:
+                return self.forward_test(img, **kwargs)
+
     def train_step(self, img, optimizer=None, **kwargs):
 
         return self.forward_train(**img)
